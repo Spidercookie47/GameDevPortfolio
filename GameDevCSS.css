@@ -13,7 +13,6 @@ body {
 .stockfootage{
   width: 1600px;
 }
-
  
 /* ---------- NAVBAR ---------- */
 .navbar {
@@ -95,6 +94,18 @@ body {
   background: #161616;
 }
  
+.aboutSection
+{
+  background-color:rgb(55, 11, 102);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutSection h1 {
+  font-family: Arial, Helvetica, sans-serifS;
+}
 .section:nth-child(even) {
   background: #1c1c1c;
 }
