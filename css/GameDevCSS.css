@@ -30,10 +30,11 @@ body {
   justify-content: space-between;
   padding: 20px 50px;
   z-index: 1000;
-  background: transparent;
+  background: rgba(17, 17, 17, 0.7);  /* ← 70% opacity black */
+  /* or */
+  background: rgba(0, 0, 0, 0.6);      /* ← 60% opacity black */
   transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
 }
- 
 .navbar.scrolled {
   background: rgba(17, 17, 17, 0.85);
   backdrop-filter: blur(10px);
@@ -73,7 +74,7 @@ body {
   color: black;
 }
  
-/* ---------- PAGE CONTENT (just to demo scrolling) ---------- */
+/* ---------- PAGE CONTENT---------- */
 .hero {
   height: 90vh;
   display: flex;
@@ -98,7 +99,8 @@ body {
 .section:nth-child(odd) {
   background: #161616;
 }
- 
+ /* ---------- ABOUT CONTENT---------- */
+
 .aboutSection {
     background-color: rgb(34, 39, 59);
     height: 50vh;
@@ -150,3 +152,167 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+/* ---------- PERSONAL PROJECT CONTENT---------- */
+
+.PerProjectsection{
+   height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.PerProjectsection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.PerProjectsection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 13px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+
+.ProProjectsection{
+   height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.ProProjectsection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.ProProjectsection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 13px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+/* ---------- CONTACT CONTENT---------- */
+.Contactsection{
+    background-color: rgb(34, 39, 59);
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.Contactsection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.Contactsection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 25px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+
+.Contactsection p a
+{
+  color: white;
+}
+
+/* Social Icons Container */
+#social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;           /* Space between icons */
+    margin-top: 30px;
+}
+
+/* Individual Icon Links */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;          /* Width of the circle */
+    height: 60px;         /* Height of the circle */
+    border-radius: 50%;   /* Makes it a circle */
+    background: #222;     /* Dark background */
+    color: #fff;          /* White icon color */
+    font-size: 28px;      /* Icon size */
+    text-decoration: none;
+    transition: all 0.3s ease;  /* Smooth hover effect */
+}
+
+/* Hover Effects - Option 1: Color Change */
+.social-icon:hover {
+    transform: scale(1.1);  /* Grows slightly on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Individual Brand Colors on Hover */
+#twitter:hover {
+    background: #1da1f2;    /* Twitter blue */
+    color: #fff;
+}
+
+#instagram:hover {
+    background: #fcaf45;    /* Instagram orange */
+    color: #fff;
+}
+
+#linkedin:hover {
+    background: #0a66c2;    /* LinkedIn blue */
+    color: #fff;
+}
+
+#youtube:hover {
+    background: #cd201f;    /* YouTube red */
+    color: #fff;
+}
+
+/* ---------- COPYRIGHT CONTENT---------- */
+
+.CopyrightSection{
+    height: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
