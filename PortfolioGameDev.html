@@ -3,7 +3,7 @@
     <head>
         <title>Bogdan Cristea Portfolio| Game Dev Portfolio</title>
         <meta charset="utf-8">
-        <meta name="viewport", content="width=device-width, intiale-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/GameDevCSS.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,16 +11,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <header class="navbar" id="navbar">
-            <a class="logo" href="PortfolioGameDev.html">Bogdan Cristea </a>
-            <nav>
-                <a href="#about">About</a>
-                <a href="#devproject">Personal Project</a>
-                <a href="#Proproject">Professional Project</a>
-                <a href="testCV.pdf">Resume</a>
-                <a href="#contact">contact</a>
-            </nav>
-        </header>
+        <div id="navbar-placeholder"></div>
+        
 
         <section class="hero">
         <video class="stockfootage" autoplay muted loop>
@@ -56,7 +48,85 @@
                 <span class="text">Click on the tiles to learn more about each project.</span>
             </div>
         </section>
-        <section class="section" id="devprojectcontents"></section>
+        <!-- Project Cards to show my projects-->
+        <section class="section" id="devprojectcontents">
+            <div class="project-grid">
+                <!--The Monster In The wood VR Project-->
+                <a class="project-card" href="ProjectPersonal/MonsterINTheWoodsINFO.html">
+                <div class="project-image">
+                    <img src="./img/MITW.png" alt="Monster In the Woods Project screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>Monster In the Woods Project</h3>
+                    <p>A VR thriller Experience Being hunted by a Monster. This game is based on the Creepypasta Slenderman Game.</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">VR</span>
+                        <span class="tag">College Project</span>
+                </div>
+                    <div class="contributions">
+                        <span>My contributions:</span>
+                        <ul>
+                            <li>Program the Monster's AI and Hunting System</li>
+                            <li>Level Design of the game</li>
+                            <li>Sound Design</li>
+                            <li>Unity VR XR Interaction Toolkit</li>
+                        </ul>
+                    </div>
+                </div>
+                </a>
+                <!--What Lies In The Dark?-->
+                <a class="project-card" href="ProjectPersonal/WhatLiesInTheDarkINFO.html">
+                <div class="project-image">
+                    <img src="./img/WLID.png" alt="What Lies In The Dark screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>What Lies In The Dark?</h3>
+                    <p>A 2d vampire survivor inspired game Where you face zombies and attempt to dodge while killing them with your flashlight.</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">2D</span>
+                        <span class="tag">College Project</span>
+                </div>
+                    <div class="contributions">
+                        <span>My contributions:</span>
+                        <ul>
+                            <li>Art Design</li>
+                            <li>Health system</li>
+                            <li>Enemying Spawn system</li>
+                        </ul>
+                    </div>
+                </div>
+                </a>
+                <!--Midnight Snack-->
+                 <a class="project-card" href="ProjectPersonal/MidnightSnackINFO.html">
+                <div class="project-image">
+                    <img src="./img/MS.png" alt="Midnight Snakc screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>Midnight Snack</h3>
+                    <p>A small comedic Horror Game design to Practice Cinemachine cutscene. It was also my first Gamejam</p>
+                    <div class="tags">W
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">3D</span>
+                        <span class="tag">Gamejam</span>
+                </div>
+                    <div class="contributions">
+                        <span>My contributions:</span>
+                        <ul>
+                            <li>Sound design</li>
+                            <li>Interaction System</li>
+                            <li>Cinemachine cutscene</li>
+                        </ul>
+                    </div>
+                </div>
+                </a>
+
+            </div>
+        </section>
         <section class="ProProjectsection" id="Proproject">
               <h1>
                 Professional Project
@@ -65,7 +135,35 @@
                 <span class="text">Click on the tiles to learn more about each project.</span>
             </div>
         </section>
-        <section class="section" id="Proprojectcontents"></section>
+        <section class="section" id="Proprojectcontents">
+                      <div class="project-grid">
+                <!--The Monster In The wood VR Project-->
+                <a class="project-card" href="ProjectPersonal/horror-game.html">
+                <div class="project-image">
+                    <img src="./img/ozex.jpeg" alt="OZEX screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>OZEX internship</h3>
+                    <p></p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Front-end</span>
+                        <span class="tag">internship</span>
+                </div>
+                    <div class="contributions">
+                        <span>My contributions:</span>
+                        <ul>
+                            <li>Front-end mobile development</li>
+                            <li>Connect the Front-end with Back-end</li>
+                            <li>Utilizing GIT during development</li>
+                        </ul>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </section>
         <section class="Contactsection" id="contact">
             <h1>
                 Contact Me
@@ -94,6 +192,7 @@
 			</div>
         </section>
         <section class="CopyrightSection" id="copyright">Copyright © 2026 by Bogdan Cristea | All images, logos and names are used with permission</section>
+        <script src="/navbar-loader.js"></script>
 
     </body>
 </html>

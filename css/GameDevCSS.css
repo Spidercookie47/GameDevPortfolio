@@ -316,3 +316,117 @@ body {
     padding: 40px;
 }
 
+#devprojectcontents,
+#Proprojectcontents {
+    height: auto;
+    display: block;
+    padding: 60px 40px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 350px));
+    justify-content: start;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    display: block;
+    background: #1c1c1c;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #262626;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.project-image {
+    overflow: hidden;
+    height: 200px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.12);
+}
+
+.project-info {
+    padding: 18px 20px 22px;
+}
+
+.project-info h3 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.project-info p {
+    font-family: 'Federo', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.tag {
+    background: #2a2a2a;
+    color: #ddd;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid #3a3a3a;
+}
+
+.contributions {
+    border-top: 1px solid #2a2a2a;
+    padding-top: 12px;
+    font-family: 'Federo', sans-serif;
+}
+
+.contributions span {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    margin-bottom: 6px;
+}
+
+.contributions ul {
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.contributions li {
+    padding: 2px 0;
+    opacity: 0.9;
+}
+
+.contributions li::before {
+    content: "▸ ";
+    opacity: 0.5;
+}
