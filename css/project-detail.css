@@ -1,0 +1,305 @@
+* ============================================================
+   PROJECT DETAIL PAGE STYLES — STANDALONE
+   Used only on individual project pages inside
+   /ProjectPersonal/ and /ProjectProfessional/
+ 
+   This file is fully independent — it does NOT rely on
+   GameDevCSS.css being loaded. It includes its own reset,
+   base body styling, and navbar styling, so a project page
+   only ever needs to link THIS file.
+   ============================================================ */
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #111;
+    color: #fff;
+}
+ 
+/* safety net: cap every image, no matter its container */
+img {
+    max-width: 100%;
+    height: auto;
+}
+ 
+/* ---------- PAGE THEME BACKGROUND ---------- */
+/* Set --project-theme on the <body> tag per page to recolor it, e.g.:
+   <body style="--project-theme: #3a1f4d;">
+   Or use a background image instead — see .page-background-image below. */
+ 
+body {
+    --project-theme: #1e1e2f; /* default fallback color if a page doesn't set one */
+}
+ 
+.page-background {
+    background-color: var(--project-theme);
+    min-height: 100vh;
+    display: flow-root;
+}
+ 
+/* OPTIONAL: use an image instead of a flat color.
+   Add class="page-background-image" on the wrapper below AND set:
+   style="--project-bg-image: url('/ProjectPersonal/img/your-bg.jpg');"
+   The dark overlay keeps text readable over busy images. */
+.page-background-image {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        var(--project-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flow-root;
+}
+ 
+/* ---------- NAVBAR ---------- */
+/* copied from GameDevCSS.css so this file works on its own */
+ 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+}
+ 
+.navbar.scrolled {
+    background: rgba(17, 17, 17, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    padding: 12px 50px;
+}
+ 
+.navbar .logo {
+    font-size: 1.4rem;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+}
+ 
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+ 
+.navbar nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    transition: opacity 0.25s ease;
+}
+ 
+.navbar nav a:hover {
+    opacity: 1;
+    border-radius: 20px;
+    padding: 5px 5px;
+    background-color: #dddddd;
+    color: black;
+}
+ 
+/* ---------- PAGE LAYOUT ---------- */
+ 
+.project-detail {
+    max-width: 1000px;
+    margin: 100px auto 80px;
+    padding: 60px 60px 50px;
+ 
+    background: rgba(10, 10, 10, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+ 
+.project-detail h1 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 3rem;
+    margin-bottom: 30px;
+ 
+    paint-order: stroke fill;
+    -webkit-text-stroke: 6px #000000;
+}
+ 
+/* ---------- INFO BOX ---------- */
+/* the key/value card near the top: Project Type, Engine, etc. */
+ 
+.project-meta {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+}
+ 
+.project-meta dl {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 12px 20px;
+}
+ 
+.project-meta dt {
+    font-family: 'Federo', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    opacity: 0.6;
+}
+ 
+.project-meta dd {
+    font-family: 'Federo', sans-serif;
+    font-size: 0.95rem;
+}
+ 
+/* ---------- CONTENT SECTIONS ---------- */
+/* "About the Project", "Systems & Contributions", etc. */
+ 
+.project-section {
+    margin-bottom: 40px;
+}
+ 
+.project-section h2 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+ 
+    paint-order: stroke fill;
+    -webkit-text-stroke: 4px #000000;
+}
+ 
+.project-section p {
+    font-family: 'Federo', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+ 
+.feature-list {
+    font-family: 'Federo', sans-serif;
+    padding-left: 20px;
+    line-height: 1.8;
+}
+ 
+/* ---------- DROPBOX (collapsible code / video) ---------- */
+/* built on the native <details>/<summary> element — no JS needed */
+ 
+.dropbox {
+    background: #1c1c1c;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+ 
+.dropbox summary {
+    font-family: 'Federo', sans-serif;
+    padding: 16px 20px;
+    cursor: pointer;
+    list-style: none;                 /* hides default triangle marker */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+.dropbox summary::-webkit-details-marker {
+    display: none;                    /* hides default marker in Chrome/Brave */
+}
+ 
+.dropbox summary::after {
+    content: "▸";
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+}
+ 
+.dropbox[open] summary::after {
+    transform: rotate(90deg);
+}
+ 
+.dropbox-content {
+    padding: 0 20px 20px;
+    border-top: 1px solid #262626;
+}
+ 
+.dropbox-content pre {
+    background: #111;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+ 
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;           /* 16:9 aspect ratio */
+    height: 0;
+    margin-top: 15px;
+}
+ 
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+ 
+/* ---------- IMAGES WITHIN CONTENT ---------- */
+/* for screenshots dropped directly into .project-section */
+
+.project-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.project-section figure {
+    margin: 20px 0;
+}
+
+.project-section figcaption {
+    font-family: 'Federo', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* safety net: cap every image on project pages, no matter its container */
+img {
+    max-width: 100%;
+    margin-bottom: 20px;
+
+    height: auto;
+}
+
+/* ---------- COPYRIGHT FOOTER ---------- */
+
+.copyright-footer {
+    margin-top: 60px;
+    padding: 30px 40px;
+    text-align: center;
+    font-family: 'Federo', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    border-top: 1px solid #262626;
+}
