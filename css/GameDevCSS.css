@@ -1,0 +1,432 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+.stockfootage{
+  width: 100%;
+  box-sizing: border-box;
+  height: 80vh;
+  min-height: 90vh;
+  margin: 0;
+  padding: 0;
+}
+ 
+/* ---------- NAVBAR ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  z-index: 1000;
+  background: rgba(17, 17, 17, 0.7);  /* ← 70% opacity black */
+  /* or */
+  background: rgba(0, 0, 0, 0.6);      /* ← 60% opacity black */
+  transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+}
+.navbar.scrolled {
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  padding: 12px 50px;
+}
+ 
+.navbar .logo {
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+ 
+.navbar nav {
+  display: flex;
+  gap: 30px;
+}
+ 
+.navbar nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+ 
+.navbar nav a:hover {
+  opacity: 1;
+  border-radius: 20px;
+  padding: 5px 5px;
+  background-color: #dddddd;
+  color: black;
+}
+ 
+/* ---------- PAGE CONTENT---------- */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+}
+ 
+.hero h1 {
+  font-size: 3rem;
+}
+ 
+.section {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #222;
+}
+ 
+.section:nth-child(odd) {
+  background: #161616;
+}
+ /* ---------- ABOUT CONTENT---------- */
+
+.aboutSection {
+    background-color: rgb(34, 39, 59);
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.aboutSection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.aboutSection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 13px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+
+.aboutSection p a
+{
+  color: white;
+}
+.section:nth-child(even) {
+  background: #1c1c1c;
+}
+
+.medievalsharp-regular {
+  font-family: "MedievalSharp", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.federo-regular {
+  font-family: "Federo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ---------- PERSONAL PROJECT CONTENT---------- */
+
+.PerProjectsection{
+   height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.PerProjectsection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.PerProjectsection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 13px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+
+.ProProjectsection{
+   height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.ProProjectsection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.ProProjectsection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 13px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+/* ---------- CONTACT CONTENT---------- */
+.Contactsection{
+    background-color: rgb(34, 39, 59);
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.Contactsection h1 {
+    font-family: MedievalSharp;
+    margin-bottom: 20px;   /* Gives space between h1 and paragraph */
+    font-size: 60px;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 10px #000000; 
+}
+
+.Contactsection p {
+    font-family: Federo;
+    max-width: 1400px;
+    margin-bottom: 25px; /* between paragraphs */
+    gap: 50px;   
+    text-align: justify;
+
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000000; 
+    font-size: 24px;
+}
+
+.Contactsection p a
+{
+  color: white;
+}
+
+/* Social Icons Container */
+#social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;           /* Space between icons */
+    margin-top: 30px;
+}
+
+/* Individual Icon Links */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;          /* Width of the circle */
+    height: 60px;         /* Height of the circle */
+    border-radius: 50%;   /* Makes it a circle */
+    background: #222;     /* Dark background */
+    color: #fff;          /* White icon color */
+    font-size: 28px;      /* Icon size */
+    text-decoration: none;
+    transition: all 0.3s ease;  /* Smooth hover effect */
+}
+
+/* Hover Effects - Option 1: Color Change */
+.social-icon:hover {
+    transform: scale(1.1);  /* Grows slightly on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Individual Brand Colors on Hover */
+#twitter:hover {
+    background: #1da1f2;    /* Twitter blue */
+    color: #fff;
+}
+
+#instagram:hover {
+    background: #fcaf45;    /* Instagram orange */
+    color: #fff;
+}
+
+#linkedin:hover {
+    background: #0a66c2;    /* LinkedIn blue */
+    color: #fff;
+}
+
+#youtube:hover {
+    background: #cd201f;    /* YouTube red */
+    color: #fff;
+}
+
+/* ---------- COPYRIGHT CONTENT---------- */
+
+.CopyrightSection{
+    height: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+#devprojectcontents,
+#Proprojectcontents {
+    height: auto;
+    display: block;
+    padding: 60px 40px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 350px));
+    justify-content: start;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    display: block;
+    background: #1c1c1c;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #262626;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.project-image {
+    overflow: hidden;
+    height: 200px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.12);
+}
+
+.project-info {
+    padding: 18px 20px 22px;
+}
+
+.project-info h3 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.project-info p {
+    font-family: 'Federo', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.tag {
+    background: #2a2a2a;
+    color: #ddd;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid #3a3a3a;
+}
+
+.contributions {
+    border-top: 1px solid #2a2a2a;
+    padding-top: 12px;
+    font-family: 'Federo', sans-serif;
+}
+
+.contributions span {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    margin-bottom: 6px;
+}
+
+.contributions ul {
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.contributions li {
+    padding: 2px 0;
+    opacity: 0.9;
+}
+
+.contributions li::before {
+    content: "▸ ";
+    opacity: 0.5;
+}
