@@ -10,15 +10,8 @@ body {
   color: #fff;
 }
 
-.stockfootage{
-  width: 100%;
-  box-sizing: border-box;
-  height: 80vh;
-  min-height: 90vh;
-  margin: 0;
-  padding: 0;
-}
- 
+
+
 /* ---------- NAVBAR ---------- */
 .navbar {
   position: fixed;
@@ -76,12 +69,24 @@ body {
  
 /* ---------- PAGE CONTENT---------- */
 .hero {
+  position: relative;
   height: 90vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+  background: rgb(21, 5, 3);
+}
+
+.stockfootage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
  
 .hero h1 {
@@ -102,7 +107,7 @@ body {
  /* ---------- ABOUT CONTENT---------- */
 
 .aboutSection {
-    background-color: rgb(34, 39, 59);
+    background-color: rgb(21, 5, 3);
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -218,7 +223,7 @@ body {
 }
 /* ---------- CONTACT CONTENT---------- */
 .Contactsection{
-    background-color: rgb(34, 39, 59);
+    background-color: rgb(21, 5, 3);
     height: 30vh;
     display: flex;
     flex-direction: column;

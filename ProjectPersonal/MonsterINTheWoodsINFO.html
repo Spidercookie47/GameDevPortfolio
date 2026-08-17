@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Untitled Horror Project | Bogdan Cristea</title>
+    <title>Monster In the Woods| Bogdan Cristea</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/project-detail.css">
     <link rel="stylesheet" href="/css/GameDevCSS.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,17 +12,423 @@
 </head>
 <body>
 
-    <!-- navbar gets injected here by navbar-loader.js -->
-    <div id="navbar-placeholder"></div>
+    <div class="page-background-image" style="--project-bg-image: url('/img/MITW_2.png');">
 
-    <section style="padding: 140px 40px 60px; max-width: 900px; margin: 0 auto;">
-        <h1 style="font-family: 'MedievalSharp', cursive; margin-bottom: 20px;">Untitled Horror Project</h1>
-        <p style="font-family: 'Federo', sans-serif; line-height: 1.6;">
-            First-person survival horror built in Unity, set in rural Alberta, with RE7-inspired mechanics.
-            Full write-up and screenshots go here.
-        </p>
-    </section>
+        <div id="navbar-placeholder"></div>
 
-    <script src="/navbar-loader.js"></script>
+        <section class="project-detail">
+
+            <h1>Monster In the Woods Project</h1>
+
+            <!-- ---------- INFO BOX ---------- -->
+            <div class="project-meta">
+                <dl>
+                    <dt>Project Type</dt>
+                    <dd>Academic Project</dd>
+
+                    <dt>Status</dt>
+                    <dd>Completed</dd>
+
+                    <dt>Duration</dt>
+                    <dd>4 months</dd>
+
+                    <dt>Engine</dt>
+                    <dd>Unity</dd>
+
+                    <dt>Languages Used</dt>
+                    <dd>C#</dd>
+
+                    <dt>Primary Role</dt>
+                    <dd>Solo Developer</dd>
+                </dl>
+            </div>
+
+            <!-- ---------- ABOUT ---------- -->
+            <div class="project-section">
+                <h2>About Monster In the Woods</h2>
+                <p>
+                    The Monster in the Woods was my first VR horror project, and it pushed my limits in college — I integrated the XR Toolkit system to use my Oculus Quest 3 during development, 
+                    and programmed the AI monster that hunts you throughout the game. The game is directly based on the classic Slenderman creepypasta game, whose goal is simple: 
+                    collect 8 pages while being hunted by Slenderman. However, instead of Slenderman, it's a bug monster that actively hunts you, instead of appearing nearby and vanishing.
+                </p>
+                <figure>
+                    <img src="/img/MITW_3.png" alt="MidnightSnack thumbnail">
+                </figure>
+            </div>
+
+            <!-- ---------- PURPOSE ---------- -->
+            <div class="project-section">
+                <h2>Purpose of The Project</h2>
+                <p>
+                    For this project, I wanted to focus on making a VR game and learning to design more immersive environmental audio — something that makes you feel like you're really inside the forest. 
+                    I also focused on building an interactive system, aiming to make you feel like you're on this abandoned island, surrounded by nature, while still being stalked.
+                </p>
+            </div>
+
+            <!-- ---------- Game Level Design---------- -->
+            <div class="project-section">
+                <h2>Game Level Design</h2>
+                <p>
+                    For this project, I wanted to focus on making a VR game and learning to design more immersive environmental audio — something that makes you feel like you're really inside the forest. 
+                    I also focused on building an interactive system, aiming to make you feel like you're on this abandoned island, surrounded by nature, while still being stalked.
+                </p>
+                <figure>
+                    <img src="/img/MITW_1.png" alt="Game Design">
+                </figure>
+            </div>
+           <!-- ---------- DROPBOX: VIDEO ---------- -->
+            <details class="dropbox">
+                <summary>Show Gameplay Footage</summary>
+                    <div class="dropbox-content">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/zVj3ikld6_M"
+                                title="Gameplay footage"
+                                frameborder="0"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+            </details>
+
+            <!-- ---------- Collection System ---------- -->
+            <div class="project-section">
+                <h2>Collection System</h2>
+                <p>
+                    Like the Slenderman game, the collection itself isn't that difficult — 
+                    however, to allow tracking in a VR environment, the player has a watch on their wrist 
+                    that tracks the number of pages collected, while also tracking the amount of time you've been on the island. 
+                </p>
+                <figure>
+                    <img src="/img/MITW_4.png" alt="Collection System">
+                </figure>
+            </div>
+
+           <!-- ---------- MONSTER HUNT SYSTEM AI ---------- -->
+<div class="project-section">
+    <h2>Monster Hunt System AI</h2>
+    <p>
+        The monster runs on a five-state finite state machine: <strong>Track</strong>, <strong>Idle</strong>, <strong>Found</strong>, <strong>Chase</strong>, and <strong>Vanish</strong>.
+        Each state is its own script implementing a shared <code>IMonsterState</code> interface, so the monster always has exactly one active behavior at a time, with clean
+        enter/update/exit transitions between them. Below is a breakdown of each state and what it's actually doing.
+    </p>
+
+    <!-- TRACK STATE -->
+    <h3>1. Track — Wandering &amp; Clue Following</h3>
+    <p>
+        This is the monster's default state. When no clues are nearby, it wanders the island by sampling random points on the NavMesh within a search radius and patrolling toward them.
+        But if the player has recently sprinted nearby, they've dropped invisible "clues" — and the monster will path toward the nearest one within its tracking radius instead of
+        wandering randomly. This is also where the difficulty scaling lives: the more pages the player has collected, the faster the monster moves and the tighter its search radius
+        becomes, so the hunt escalates naturally as the player progresses.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — MonsterAITrack.cs</summary>
+        <div class="dropbox-content">
+            <pre><code>private bool MoveTowardsLatestClue()
+{
+    if (playerStandIn.Clues.Count == 0)
+    {
+        return false;
+    }
+    PlayerStandIn.ClueData clueData = null;
+    float num = float.PositiveInfinity;
+    foreach (PlayerStandIn.ClueData clue in playerStandIn.Clues)
+    {
+        float sqrMagnitude = (clue.position - transform.position).sqrMagnitude;
+        if (sqrMagnitude < num && sqrMagnitude <= trackingRadius * trackingRadius)
+        {
+            clueData = clue;
+            num = sqrMagnitude;
+        }
+    }
+    if (clueData != null)
+    {
+        agent.SetDestination(clueData.position);
+        return true;
+    }
+    return false;
+}
+
+// Difficulty scaling — pages collected drives both speed and search focus
+private void AdjustSpeedAndAccuracy()
+{
+    float t = (float)PaperCounter.paperCount / 10f;
+    agent.speed = Mathf.Lerp(baseSpeed, maxSpeed, t);
+    searchRadius = Mathf.Lerp(baseSearchRadius, minSearchRadius, t);
+}</code></pre>
+        </div>
+    </details>
+
+    <!-- IDLE STATE -->
+    <h3>2. Idle — Suspicion Building</h3>
+    <p>
+        Idle acts as the monster's "suspicion" layer. It's not fully aware of the player yet, but it's paying attention. If the player lingers inside its detection radius long enough,
+        or wanders in and out of that radius too many times in a short window, suspicion tips over and the monster transitions to Found. This creates tension even when the player
+        isn't directly spotted — repeatedly getting close is punished just as much as staying close too long.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — MonsterAIIdle.cs</summary>
+        <div class="dropbox-content">
+                <pre><code>public void UpdateState()
+{
+    bool flag = Vector3.Distance(player.position, transform.position) <= detectionRadius;
+    if (flag && !playerPreviouslyInside)
+    {
+        playerEnterCount++;
+        enterCountResetTimer = 0f;
+    }
+    playerPreviouslyInside = flag;
+
+    if (flag)
+    {
+        playerDetectionTimer += Time.deltaTime;
+    }
+    else
+    {
+        playerDetectionTimer = 0f;
+    }
+
+    // Long dwell time inside the radius triggers Found
+    if (playerDetectionTimer >= timeUntilFound)
+    {
+        monsterAI.TransitionToFoundState();
+        ResetState();
+        return;
+    }
+
+    // Too many in/out crossings within the reset window also triggers Found
+    if (playerEnterCount >= maxPlayerEnterCount)
+    {
+        monsterAI.TransitionToFoundState();
+        ResetState();
+        return;
+    }
+
+    if (fov.visibleTargets.Contains(player))
+    {
+        monsterAI.TransitionToFoundState();
+    }
+}</code></pre>
+        </div>
+    </details>
+
+    <!-- FOUND STATE -->
+    <h3>3. Found — The Reveal Beat</h3>
+    <p>
+        A short, deliberate pause before the chase begins. The monster stops moving, turns to face the player directly, and plays a "rage" animation for a couple of seconds. This is
+        purely a pacing choice — it gives the player a moment to register they've been spotted and react, rather than the chase starting instantly with no warning.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — MonsterAIFound.cs</summary>
+        <div class="dropbox-content">
+            <pre><code>public void EnterState()
+{
+    agent.isStopped = true;
+    timer = foundPauseDuration;
+    monsterAnimator.SetBool("rage", true);
+    monsterAnimator.SetBool("isMoving", false);
+}
+
+private void FacePlayer()
+{
+    Vector3 forward = player.position - transform.position;
+    forward.y = 0f;
+    Quaternion targetRotation = Quaternion.LookRotation(forward);
+    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+}
+
+public void UpdateState()
+{
+    if (timer > 0f)
+    {
+        timer -= Time.deltaTime;
+        FacePlayer();
+    }
+    else if (!monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Rage")
+        || monsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+    {
+        GetComponent<MonsterAI>().ChangeState(GetComponent<MonsterAIChase>());
+    }
+}</code></pre>
+        </div>
+    </details>
+
+    <!-- CHASE STATE -->
+    <h3>4. Chase — Active Pursuit</h3>
+    <p>
+        Direct, high-speed pursuit — the monster paths straight to the player's current position every frame. Chase isn't unlimited, though: it's capped at a maximum duration. This
+        cap exists because the island itself is quite large — without it, a fast player could realistically outrun or lose the monster across the open terrain, turning the chase
+        into a long, aimless foot-race instead of a tense encounter. Capping the duration keeps each chase short and intense, and once time runs out, the monster gives up and
+        transitions into Vanish instead of chasing indefinitely. Catching up close enough before that ends the run.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — MonsterAIChase.cs</summary>
+        <div class="dropbox-content">
+            <pre><code>public void UpdateState()
+{
+    if (player == null) return;
+
+    agent.SetDestination(player.position);
+    chaseTimer += Time.deltaTime;
+
+    // Give up the chase after too long and vanish instead
+    if (chaseTimer > maxChaseDuration)
+    {
+        monsterAI.ChangeState(monsterAI.vanishState);
+        return;
+    }
+
+    if (Vector3.Distance(transform.position, player.position) <= catchDistance)
+    {
+        agent.isStopped = true;
+        SceneManager.LoadScene(2); // caught — load the death/game-over scene
+    }
+}</code></pre>
+        </div>
+    </details>
+
+    <!-- VANISH STATE -->
+    <h3>5. Vanish — Resetting the Tension Across a Large Map</h3>
+    <p>
+        Because the island is large, simply letting the monster give up mid-chase and walk back to patrolling wouldn't work well — the player could end up alone on the far side of
+        the map for long stretches while the monster treks all the way back on foot, killing the tension entirely. Vanish solves this: the monster disables its renderer, waits a
+        few seconds, then finds a new NavMesh position 20–30 units from the player and warps directly there instead of walking. From the player's perspective, the monster
+        disappeared — but it reappears close by almost immediately and drops back into Track, so the threat stays present no matter how far apart the chase left them.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — MonsterAIVanish.cs</summary>
+        <div class="dropbox-content">
+            <pre><code>private IEnumerator DelayedRespawn()
+{
+    yield return new WaitForSeconds(respawnDelay);
+    SetChildrenActive(true);
+
+    Vector3 respawnPoint = FindRespawnLocation(player.position, minRespawnDistance, maxRespawnDistance);
+    if (respawnPoint != Vector3.zero)
+    {
+        agent.Warp(respawnPoint);
+    }
+
+    monsterAI.ChangeState(monsterAI.trackState);
+}
+
+private Vector3 FindRespawnLocation(Vector3 playerPosition, float minDistance, float maxDistance)
+{
+    for (int i = 0; i < 30; i++)
+    {
+        </div>
+    </details>
+
+    <!-- FIELD OF VIEW -->
+    <h3>6. Field of View — Line-of-Sight Detection</h3>
+    <p>
+        Supporting both Track and Idle is a cone-of-vision system. Every 0.2 seconds, it grabs every collider within the monster's view radius, then checks each one against two
+        conditions: is it within the monster's field-of-view angle, and is there a clear, unobstructed line of sight to it? The angle check compares the monster's forward-facing
+        direction against the direction toward the target — under the hood, Unity's <code>Vector3.Angle</code> derives this from the dot product of the two normalized vectors,
+        which is the actual "dot product for direction" math driving detection. The line-of-sight check is a raycast toward the target that fails if anything in the obstacle
+        layer — a wall, a piece of furniture — blocks the way. Only targets that pass both checks count as visible, which is what lets the player break line of sight by ducking
+        behind cover even while technically still standing inside the detection radius.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — FieldOfView.cs</summary>
+        <div class="dropbox-content">
+            <pre><code>private void FindVisibleTargets()
+{
+    visibleTargets.Clear();
+    Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+
+    for (int i = 0; i < targetsInRadius.Length; i++)
+    {
+        Transform target = targetsInRadius[i].transform;
+        Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+        // Angle check — internally derived from the dot product of the two
+        // normalized direction vectors (Vector3.Angle = acos(Vector3.Dot(a, b)))
+        if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2f)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+            // Line-of-sight check — fails if anything on the obstacle layer blocks the raycast
+            if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstacleMask))
+            {
+                visibleTargets.Add(target);
+            }
+        }
+    }
+}</code></pre>
+        </div>
+    </details>
+
+</div>
+<!-- ---------- JUMPSCARE ENDING SEQUENCE ---------- -->
+<div class="project-section">
+    <h2>Jumpscare Ending Sequence</h2>
+    <p>
+        When the monster finally catches the player, control hands off to a dedicated jumpscare sequence rather than just cutting straight to a game-over screen. The VR camera
+        shakes first, giving the player an immediate physical "something is wrong" cue. Half a second later, the monster — previously hidden — is activated directly in view and
+        gets its own shake effect layered on top, landing right as the jumpscare sound plays. Once the audio finishes, the game waits a brief beat before loading the ending scene,
+        so the moment has room to land instead of cutting away instantly.
+    </p>
+    <p>
+        One deliberate constraint worth calling out: camera shake in VR has to be used carefully, since shaking the headset view itself can contribute to motion sickness if
+        overdone. Here it's kept short (half a second) and used only once, at the single moment in the whole game meant to be genuinely jarring — a controlled trade-off between
+        VR comfort and scare impact, rather than a shake effect scattered throughout general gameplay.
+    </p>
+    <details class="dropbox">
+        <summary>Show Code — VRCameraShake.cs</summary>
+        <div class="dropbox-content">
+            <pre><code>public void TriggerJumpscare()
+{
+    StartCoroutine(ShakeVR());
+    StartCoroutine(DelayMonsterAppearanceAndShake(monsterAppearanceDelay));
+}
+ 
+private IEnumerator ShakeVR()
+{
+    Vector3 originalPosition = vrCameraTransform.localPosition;
+    float elapsed = 0f;
+    while (elapsed < shakeDuration)
+    {
+        float x = originalPosition.x + Random.Range(-shakeMagnitude, shakeMagnitude);
+        float y = originalPosition.y + Random.Range(-shakeMagnitude, shakeMagnitude);
+        vrCameraTransform.localPosition = new Vector3(x, y, originalPosition.z);
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+    vrCameraTransform.localPosition = originalPosition;
+}
+ 
+private IEnumerator DelayMonsterAppearanceAndShake(float delay)
+{
+    yield return new WaitForSeconds(delay);
+    monster.SetActive(true);
+    StartCoroutine(ShakeMonster(monsterTransform, shakeDuration, shakeMagnitude));
+    audioSource.PlayOneShot(jumpscareSound);
+ 
+    // Wait for the jumpscare sound to fully finish before cutting away
+    yield return new WaitWhile(() => audioSource.isPlaying);
+    yield return new WaitForSeconds(0.5f);
+    SceneManager.LoadScene(3); // ending scene
+}</code></pre>
+        </div>
+    </details>
+            <!-- ---------- ITCH.IO LINK ---------- -->
+            <div class="project-section">
+                <h2>Itch.IO Link</h2>
+                <p>
+                    For those who want to play, here is the itch.io link of the game!
+                </p>
+                <a href="https://spoodercookie47.itch.io/monster-in-the-woods" target="_blank">https://spoodercookie47.itch.io/monster-in-the-woods</a>
+            </div>
+
+        </section>
+
+        <footer class="copyright-footer">
+            Copyright © 2026 by Bogdan Cristea | All images, logos and names are used with permission
+        </footer>
+
+    </div>
+
+   <script src="/navbar-loader.js"></script>
 </body>
 </html>

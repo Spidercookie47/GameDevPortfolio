@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Untitled Horror Project | Bogdan Cristea</title>
+    <title>Midnight Snack GameJam | Bogdan Cristea</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/project-detail.css">
     <link rel="stylesheet" href="/css/GameDevCSS.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,17 +12,117 @@
 </head>
 <body>
 
-    <!-- navbar gets injected here by navbar-loader.js -->
-    <div id="navbar-placeholder"></div>
+    <div class="page-background-image" style="--project-bg-image: url('/img/MITW_1.png');">
 
-    <section style="padding: 140px 40px 60px; max-width: 900px; margin: 0 auto;">
-        <h1 style="font-family: 'MedievalSharp', cursive; margin-bottom: 20px;">Untitled Horror Project</h1>
-        <p style="font-family: 'Federo', sans-serif; line-height: 1.6;">
-            First-person survival horror built in Unity, set in rural Alberta, with RE7-inspired mechanics.
-            Full write-up and screenshots go here.
-        </p>
-    </section>
+        <div id="navbar-placeholder"></div>
 
-    <script src="/navbar-loader.js"></script>
+        <section class="project-detail">
+
+            <h1>Midnight Snack Project</h1>
+
+            <!-- ---------- INFO BOX ---------- -->
+            <div class="project-meta">
+                <dl>
+                    <dt>Project Type</dt>
+                    <dd>GameJam/Personal</dd>
+
+                    <dt>Status</dt>
+                    <dd>Completed</dd>
+
+                    <dt>Duration</dt>
+                    <dd>1 week</dd>
+
+                    <dt>Engine</dt>
+                    <dd>Unity</dd>
+
+                    <dt>Languages Used</dt>
+                    <dd>C#</dd>
+
+                    <dt>Primary Role</dt>
+                    <dd>Solo Developer</dd>
+                </dl>
+            </div>
+
+            <!-- ---------- ABOUT ---------- -->
+            <div class="project-section">
+                <h2>About Midnight Snack</h2>
+                <p>
+                    Midnight Snack is a simple, very short comedic horror game made for a Halloween game jam. You play as a guy who wakes up in the middle of the night, feeling
+                    hungry and wanting a midnight snack. As you get up, you proceed to explore the home and realize the horrors within — but still proceed to make the sandwich. Finally, as you finish
+                    making the sandwich, you need to find one last item, and a cutscene plays where a monster who had the salt gives it to you, because he was using it for his midnight snack too.
+                    Yes, the monster was your roommate. Lol.
+                </p>
+                <figure>
+                    <img src="/img/MS.png" alt="MidnightSnack thumbnail">
+                </figure>
+            </div>
+
+            <!-- ---------- PURPOSE ---------- -->
+            <div class="project-section">
+                <h2>Purpose of The Project</h2>
+                <p>
+                    As the only developer for this game jam, I did the majority of coding and game design. But the goal of the project was learning to use Unity's Cinemachine —
+                    to explore Cinemachine and cutscene development during the jam. However, I did develop other systems which are shown below.
+                </p>
+            </div>
+
+            <!-- ---------- INTERACTION SYSTEM ---------- -->
+            <div class="project-section">
+                <h2>Interaction System</h2>
+                <p>
+                    This project features a streamlined interaction system focused on environmental immersion. Players can physically push open doors and pick up a single key item—a flashlight.
+                    To keep the experience tight and focused, there is no inventory management; picking up the flashlight automatically equips it, allowing the player to instantly navigate dark areas.
+                </p>
+                <figure>
+                    <img src="/img/MSInteractionSystem.gif" alt="Interaction System">
+                </figure>
+            </div>
+
+            <!-- ---------- QUEST SYSTEM ---------- -->
+            <div class="project-section">
+                <h2>Quest System</h2>
+                <p>
+                    The game features a simple fetch-quest structure where the player must collect ingredients to make a sandwich. However, subverting player expectations,
+                    the final ingredient triggers a cutscene instead of completing the meal—revealing a monster and abruptly ending the game. This designed anti-climax reinforces the narrative twist.
+                </p>
+                <figure>
+                    <img src="/img/lTQ+IO.png" alt="Quest System">
+                </figure>
+            </div>
+
+            <!-- ---------- CINEMACHINE / CUTSCENES ---------- -->
+            <div class="project-section">
+                <h2>Cinemachine/Cutscenes</h2>
+                <p>
+                    For the first time, I integrated Cinemachine to drive narrative moments. The opening cutscene establishes the world as the player rises from bed, while the ending sequence delivers the game's
+                    twist—the monster reveal. Animation isn't my strong suit, so the monster moves with an intentional stiffness that, in hindsight,
+                    adds an unintentional charm to the horror. This project was as much about learning camera work as it was about accepting creative limitations.
+                </p>
+                <figure>
+                    <img src="/img/MS_cine1.gif" alt="Cinemachine/Cutscenes 1">
+                </figure>
+                <figure>
+                    <img src="/img/MS_cine2.gif" alt="Cinemachine/Cutscenes 2">
+                </figure>
+            </div>
+
+            <!-- ---------- ITCH.IO LINK ---------- -->
+            <div class="project-section">
+                <h2>Itch.IO Link</h2>
+                <p>
+                    For those who want to play, here is the itch.io link of the game!
+                </p>
+                <a href="https://spoodercookie47.itch.io/midnight-snack" target="_blank">https://spoodercookie47.itch.io/midnight-snack</a>
+            </div>
+
+        </section>
+
+        <footer class="copyright-footer">
+            Copyright © 2026 by Bogdan Cristea | All images, logos and names are used with permission
+        </footer>
+
+    </div>
+
+   <script src="/navbar-loader.js"></script>
 </body>
 </html>
