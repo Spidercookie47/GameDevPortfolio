@@ -1,14 +1,4 @@
-* ============================================================
-   PROJECT DETAIL PAGE STYLES — STANDALONE
-   Used only on individual project pages inside
-   /ProjectPersonal/ and /ProjectProfessional/
- 
-   This file is fully independent — it does NOT rely on
-   GameDevCSS.css being loaded. It includes its own reset,
-   base body styling, and navbar styling, so a project page
-   only ever needs to link THIS file.
-   ============================================================ */
- 
+
 * {
     margin: 0;
     padding: 0;
@@ -41,11 +31,7 @@ body {
     min-height: 100vh;
     display: flow-root;
 }
- 
-/* OPTIONAL: use an image instead of a flat color.
-   Add class="page-background-image" on the wrapper below AND set:
-   style="--project-bg-image: url('/ProjectPersonal/img/your-bg.jpg');"
-   The dark overlay keeps text readable over busy images. */
+
 .page-background-image {
     background-image:
         linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
