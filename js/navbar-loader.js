@@ -9,7 +9,7 @@
 const scriptURL = document.currentScript.src;
 const siteBasePath = scriptURL.replace(/js\/navbar-loader\.js.*$/, '');
 
-fetch(siteBasePath + 'js/navbar.html')
+fetch(siteBasePath + 'navbar.html')
     .then(response => {
         if (!response.ok) {
             throw new Error('Could not load navbar: ' + response.status);
