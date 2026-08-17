@@ -9,8 +9,8 @@
 // ============================================================
 
 const heroVideoPlaylist = [
-    '/Vids/clip1.mp4',
-    '/Vids/clip2.mp4',
+    'Vids/clip1.mp4',
+    'Vids/clip2.mp4',
     // add more clips here, e.g. '/Vids/clip4.mp4'
 ];
 
