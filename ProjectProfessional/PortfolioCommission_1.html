@@ -67,7 +67,11 @@
             <div class="project-section">
                 <h2>Web page Setup</h2>
                 <p>
-                    Since the client want to simply recreating the webpage from exisiting design. 
+                    Since the client simply wants to recreate a webpage from an existing design, such as one built on Wix, the process has been much easier. The layout, colors, typography, and content structure are already defined, 
+                    so I don't have to spend time on design decisions or wait on revisions. I can focus on translating what's already there into clean, working code, and I already have a clear vision of the end result.
+                    For the build, I use HTML for the structure, CSS for styling and responsive layout, and a small amount of JavaScript to code the transition effect when navigating between the navbar tabs.
+                    Keeping the JavaScript minimal keeps the site lightweight and fast to load. It also makes it easier to maintain, and it avoids the bloat that website builders often add. 
+                    The result is a site that looks like the original design but gives the client full control over the code and hosting.
                 </p>
                 <figure>
                     <h4>Wix design</h4>
@@ -81,10 +85,109 @@
                     <img src="../img/commission1/4.png" alt="Quest System">
                     <img src="../img/commission1/6.png" alt="Quest System">
                     <img src="../img/commission1/9.png" alt="Quest System">
-
-
                 </figure>
             </div>
+        <!-- ---------- Form ---------- -->
+<div class="project-section">
+  <h2>Form Setup</h2>
+  <p>
+    Since the site is static and has no backend, I used Formspree to handle the contact form.
+    I created a form in my Formspree account, which gave me a unique endpoint, and pointed the HTML
+    form's action at it. Every input has a name attribute, which is how Formspree knows which fields
+    to collect and include in the email.
+  </p>
+
+  <details class="dropbox">
+    <summary>Show Code — contact.html (form)</summary>
+    <div class="dropbox-content">
+        <pre><code>
+&lt;form class="contact-form" id="contact-form"
+action="https://formspree.io/f/your-form-id" method="POST" novalidate&gt;
+&lt;label&gt;First name *&lt;input type="text" name="first_name" required autocomplete="given-name"&gt;&lt;/label&gt;
+&lt;label&gt;Last name *&lt;input type="text" name="last_name" required autocomplete="family-name"&gt;&lt;/label&gt;
+&lt;label&gt;Email *&lt;input type="email" name="email" required autocomplete="email"&gt;&lt;/label&gt;
+&lt;label&gt;Subject&lt;input type="text" name="subject"&gt;&lt;/label&gt;
+&lt;label class="wide"&gt;Message&lt;textarea name="message" rows="4"&gt;&lt;/textarea&gt;&lt;/label&gt;
+&lt;button type="submit" class="submit-btn"&gt;Submit&lt;/button&gt;
+&lt;p class="form-status" role="status" aria-live="polite"&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </code></pre>
+    </div>
+  </details>
+
+  <p>
+    I added novalidate to turn off the browser's default validation pop-ups, so I could
+    handle validation myself and keep the error messages consistent with the site's design. The
+    autocomplete attributes let browsers autofill the fields, and the status paragraph at
+    the bottom uses aria-live="polite" so screen readers announce the result.
+  </p>
+
+  <h3>Validation</h3>
+  <p>
+    On submit, a short script stops the default page reload and checks each required field. Empty
+    fields, or an email that doesn't look like an address, get an <code>invalid</code> class that I
+    can style in CSS, and the visitor is asked to complete the required fields.
+  </p>
+
+  <details class="dropbox">
+    <summary>Show Code — main.js (validation)</summary>
+    <div class="dropbox-content">
+    <pre><code>
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  var ok = true;
+  form.querySelectorAll("[required]").forEach(function (el) {
+    var bad = !el.value.trim() ||
+      (el.type === "email" &amp;&amp; !/^\S+@\S+\.\S+$/.test(el.value));
+    el.classList.toggle("invalid", bad);
+    if (bad) ok = false;
+  });
+  if (!ok) {
+    status.textContent = "Please fill in the required fields (*).";
+    return;
+  }
+  // ...send the form
+});</code></pre>
+    </div>
+  </details>
+
+  <h3>Sending Without Leaving the Page</h3>
+  <p>
+    If everything is valid, the form is sent in the background with <code>fetch</code> and
+    <code>FormData</code>. The <code>Accept: application/json</code> header tells Formspree to reply
+    with JSON instead of redirecting to its own thank-you page, so the visitor stays on my site. The
+    form shows "Sending…", then resets and confirms on success, or shows a friendly error message if
+    something goes wrong.
+  </p>
+
+  <details class="dropbox">
+    <summary>Show Code — main.js (fetch)</summary>
+    <div class="dropbox-content">
+<pre><code>status.textContent = "Sending…";
+fetch(form.action, {
+  method: "POST",
+  body: new FormData(form),
+  headers: { Accept: "application/json" }
+})
+  .then(function (r) {
+    if (!r.ok) throw new Error("Request failed");
+    form.reset();
+    status.textContent = "Thanks! Your message has been sent.";
+  })
+  .catch(function () {
+    status.textContent = "Something went wrong. Please try again later.";
+  });</code></pre>
+    </div>
+  </details>
+
+  <h3>Result</h3>
+  <p>
+    Formspree forwards each submission to the client's inbox and keeps a copy in its dashboard. The
+    client gets a working contact form with no server code and no hosting cost, which fits a site
+    hosted on GitHub Pages.
+  </p>
+</div>
+</section>
             
     </section>
     <section class="CopyrightSection" id="copyright">Copyright © 2026 by Bogdan Cristea </section>
